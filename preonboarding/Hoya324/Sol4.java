@@ -1,37 +1,40 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.HashMap;
 
 public class Sol4 {
+    private static final int asciiCodeOfA = 65;
+    private static final int asciiCodeOfZ = 90;
+    private static final int asciiCodeOfa = 97;
+    private static final int asciiCodeOfz = 122;
 
-    public static String solution(String word) {
-        String result = "";
-        int target;
+    private StringBuilder solution(String word) {
+        int currentCharToAscii;
+        StringBuilder stringBuilder = new StringBuilder();
+        int wordLength = word.length();
 
-        for (int i = 0; i < word.length(); i++) {
-            target = word.charAt(i);
-            if (target >= 65 && target <= 90) {
-                result += (char) (90-(target - 65));
+        for (int i = 0; i < wordLength; i++) {
+            currentCharToAscii = word.charAt(i);
+            boolean isUppercase = currentCharToAscii >= asciiCodeOfA && currentCharToAscii <= asciiCodeOfZ;
+            boolean isLowercase =  currentCharToAscii >= asciiCodeOfa && currentCharToAscii <= asciiCodeOfz;
+            if (isUppercase) {
+                stringBuilder.append((char) (asciiCodeOfZ - (currentCharToAscii - asciiCodeOfA)));
             }
-            else if (target >= 97 && target <= 122) {
-                result += (char) (122-(target - 97));
+            else if (isLowercase) {
+                stringBuilder.append((char) (asciiCodeOfz-(currentCharToAscii - asciiCodeOfa)));
             }
             else {
-                result += (char) target;
+                stringBuilder.append((char) currentCharToAscii);
             }
         }
-
-        return result;
-
+        return stringBuilder;
     }
 
     public static void main(String[] args) throws IOException {
 
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         String word = bufferedReader.readLine();
-
-        System.out.println(solution(word));
-
+        Sol4 sol4 = new Sol4();
+        System.out.println(sol4.solution(word));
     }
 }

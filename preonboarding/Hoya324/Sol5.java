@@ -4,25 +4,32 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 
 public class Sol5 {
-
+    private static final int fiftyThousandWON = 50000;
+    private static final int tenThousandWON = 10000;
+    private static final int fiveThousandWON = 5000;
+    private static final int oneThousandWON = 1000;
+    private static final int fiveHundredWON = 500;
+    private static final int oneHundredWON = 100;
+    private static final int fiftyWON = 50;
+    private static final int tenWON = 10;
+    private static final int oneWON = 1;
 
     public static int [] solution(int money) {
-
         int [] result = {0,0,0,0,0,0,0,0,0};
-        int [] moneyList = {50000, 10000, 5000, 1000, 500, 100, 50, 10, 1};
+        int [] moneyList = {fiftyThousandWON, tenThousandWON, fiveThousandWON, oneThousandWON, fiveHundredWON, oneHundredWON, fiftyWON, tenWON, oneWON};
+        int changeCount;
+        int leftMoney = money;
         for (int i = 0; i < 9; i++) {
-            result[i] += (money / moneyList[i]);
-            money %= moneyList[i];
+            changeCount = leftMoney / moneyList[i];
+            result[i] += changeCount;
+            leftMoney %= moneyList[i];
         }
-
         return result;
     }
 
     public static void main(String[] args) throws IOException {
-
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         int money = Integer.parseInt(bufferedReader.readLine());
-
         System.out.println(Arrays.toString(solution(money)));
     }
 }
