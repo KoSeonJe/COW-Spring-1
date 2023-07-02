@@ -15,7 +15,7 @@ public class Sol5 {
     private static final int oneWON = 1;
 
     public static int [] solution(int money) {
-        int [] result = {0,0,0,0,0,0,0,0,0};
+        int [] result = new int [9];
         int [] moneyList = {fiftyThousandWON, tenThousandWON, fiveThousandWON, oneThousandWON, fiveHundredWON, oneHundredWON, fiftyWON, tenWON, oneWON};
         int changeCount;
         int leftMoney = money;
