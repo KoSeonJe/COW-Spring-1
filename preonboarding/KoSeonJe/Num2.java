@@ -21,7 +21,7 @@ public class Num2 {
             }
             cryptogram.deleteCharAt(i);
             cryptogram.deleteCharAt(i);
-                flag=true;
+            flag=true;
             cryptogramLength = cryptogram.length()-1;
         }
         if(!flag) {

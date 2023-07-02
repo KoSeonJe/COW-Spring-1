@@ -3,10 +3,10 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Num4 {
-    final int NUM_OF_A=65;
-    final int NUM_OF_Z=90;
-    final int NUM_OF_a=97;
-    final int NUM_OF_z=122;
+    final int NUMOFA=65;
+    final int NUMOFZ=90;
+    final int NUMOFa=97;
+    final int NUMOFz=122;
     final int ALPHACOUNT=26;
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -21,10 +21,10 @@ public class Num4 {
         Map<Character, Character> smallAlpha = new HashMap<>();
         Map<Character, Character> bigAlpha = new HashMap<>();
         for(int i=0; i<ALPHACOUNT; i++){
-            smallAlpha.put((char)(i+NUM_OF_a),(char)(NUM_OF_z-i));
+            smallAlpha.put((char)(i+NUMOFa),(char)(NUMOFz-i));
         }
         for(int i=0; i<ALPHACOUNT; i++){
-            bigAlpha.put((char)(i+NUM_OF_A),(char)(NUM_OF_Z-i));
+            bigAlpha.put((char)(i+NUMOFA),(char)(NUMOFZ-i));
         }
         for(int i=0; i<word.length(); i++){
             if(word.charAt(i)==' ')continue;
