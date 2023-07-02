@@ -27,7 +27,7 @@ public class Sol4 {
                 stringBuilder.append((char) currentCharToAscii);
             }
         }
-        return stringBuilder;
+        return stringBuilder.toString();
     }
 
     public static void main(String[] args) throws IOException {
