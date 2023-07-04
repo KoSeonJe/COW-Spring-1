@@ -61,7 +61,6 @@
 - spring mvc - mvc패턴, mvc구조, mvc 기본 기능
 
 - jpa - sql + jpql, jpa 핵심 기능, jpa를 활용한 db설계 기초
-    - 과제 위주
     
 - spring securty - spring securty를 이용한 인증/인가, jwt
 
