@@ -1,6 +1,7 @@
 # [1주차] 객체지향 코드 연습 - 로또(Hoya324)
 
-[구현코드](https://github.com/Hoya324/practice-oop-lotto)
+- [구현코드](https://github.com/Hoya324/practice-oop-lotto)
+- [로또 구현 pr](https://github.com/COW-edu/practice-oop-lotto/pull/1)
 
 ## 고민한 점
 - 기능 요구 사항, 프로그래밍 요구 사항에 맞게 구현하기 하려면 기능을 나누는 방법을 생각해야했다.
