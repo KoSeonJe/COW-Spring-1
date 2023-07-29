@@ -9,9 +9,6 @@
       <img  src="https://avatars.githubusercontent.com/u/96857599?v=4"  width="100px;"  alt=""/>
     </td>
     <td  align="center">
-      <img  src="https://avatars.githubusercontent.com/u/110715190?v=4"  width="100px;"  alt=""/>
-    </td>
-    <td  align="center">
       <img  src="https://avatars.githubusercontent.com/u/128007622?v=4"  width="100px;"  alt=""/>
     </td>
     <td  align="center">
@@ -25,11 +22,6 @@
     <td align="center">
         <a href="https://github.com/Hoya324">
             <div>경호</div>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/eeeseohyun">
-            <div>서현</div>
         </a>
     </td>
     <td align="center">
