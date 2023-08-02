@@ -152,6 +152,41 @@
 
 <img width="598" alt="스크린샷 2023-07-29 오후 3 55 30" src="https://github.com/Hoya324/SpringNote/assets/96857599/51b296bd-c7b0-4979-83f0-1c62b5ac641a">
 
+### DNS의 기본적인 동작 방식
+
+<img width="815" alt="스크린샷 2023-08-02 오후 3 22 11" src="https://github.com/Hoya324/COW-Spring-1/assets/96857599/3c5c3125-6b72-466f-b59a-387023bcc9ee">
+
+1. 사용자가 브라우저의 주소창에 도메인 주소를 입력한다.
+2. 브라우저는 이 도메인 주소의 실제 IP주소를 알아내기 위해서 DNS 서버에 요청한다.
+3. DNS 서버는 해당 도메인 주소에 맵핑되는 IP주소를 돌려준다.
+4. 브라우저는 돌려받은 IP주소를 통해 실제 서버에 페이지를 요청한다.
+5. 서버는 요청한 페이지를 응답한다.
+
+### DNS 서버 캐시
+- 자주 사용하는 페이지들은 캐시로 저장해둔다.
+- 매번 입력할 때마다 DNS 서버에 요청하여 돌려받는 것은 비효율적이기 때문이다.
+- 따라서 로컬 저장소에 최근 접속한 페이지의 IP주소를 도메인 주소와 매핑시켜서 저장시켜 놓는다.
+- 브라우저에서 요청이 들어오게 되면 DNS 서버에 요청하기 전에 이미 캐싱되어 있는 도메인 주소인지 확인을 하고, 있다면 바로 가져와서 IP주소로 반환시켜 준다.
+
+### IP 주소를 조사하는 방법 - DNS Resolver
+
+<img width="695" alt="스크린샷 2023-08-02 오후 3 29 41" src="https://github.com/Hoya324/COW-Spring-1/assets/96857599/123b9a7f-68cf-4c9d-83b3-add3067fff4a">
+
+Resolver는 DNS 서버에 대한 클라이언트로 동작한다.
+
+1. Resolver는 DNS 서버에 조회 메시지를 보내며
+2. 거기에 반송되는 응답 메시지를 클라이언트에게 전달한다.
+
+- 이에, DNS Resolver는 Name Resolution을 실행하는 역할을 수행한다고도 말할 수 있다.
+
+> **Name Resolution**: DNS 원리를 사용하여 IP 주소를 조사하는 것
+ 
+> Resolver의 실체는 Socket 라이브러리에 들어있는 부품화한 프로그램이다. 이를 통해 애플리케이션에서 간단히 Resolver를 호출하여 이용할 수 있다.
+> 도메인명에서 IP 주소를 조사할 때 브라우저는 Socket 라이브러리의 Resolver를 이용한다.
+
+**Socket 라이브러리**
+- 네트워크의 기능을 호출하기 위한 프로그램 부품집이며 사전에 만들어진 부품을 통해 프로그래밍 작업 수고를 덜 수 있다.
+
 ## HTTP
 
 ### HTTP 메시지에 모든 것을 전송
@@ -168,6 +203,26 @@
   - RFC2068 (1997) -> RFC2616 (1999) -> RFC7230~7235 (2014)
 - HTTP/2 2015년: 성능 개선
 - HTTP/3 진행중: TCP 대신에 UDP 사용, 성능 개선
+
+### HTTP/2
+- HTTP 1.1의 파이프라이닝은 앞의 요청이 완료되기 이전에 요청을 연속적으로 보낼 수 있게 해준다.
+- 이런 방식은 3개의 요청이 있을 때, 두번째, 세번째 요청이 아무리 일찍 끝나도 HTTP 요청은 순차적이기 때문에 첫번째 요청의 응답이 오기 전까진 블로킹된다.
+- 이를 Head Of line blocking(HOL Blocking)이라고 한다.
+
+**Binary Framing Layer**
+
+<img width="649" alt="스크린샷 2023-08-02 오후 3 39 07" src="https://github.com/Hoya324/COW-Spring-1/assets/96857599/65267f21-6851-428f-9781-0326951b18cc">
+
+- HTTP/2는 HOL Blocking을 클라이언트와 서버 간의 HTTP 메시지를 캡슐화하고 전송하는 방법을 위한 새로운 계층을 통해 해결했다.
+
+### HTTP/2의 성능 개선
+- 하나의 요청을 차단하지 않고 여러 요청을 병렬로 인터리브 할 수 있다.
+	- **인터리브**: 한 요청의 처리과정에 다른 요청을 끼워넣을 수 있다는 의미
+- 하나의 응답을 차단하지 않고 여러 응답을 병렬로 인터리브 할 수 있다.
+- 단일 연결로 여러 요청과 응답을 병렬 전달한다.
+- 이미지 스프라이트, 도메인 샤딩등의 HTTP/1.x의 불필요한 최적화 기능을 삭제한다.
+- 불필요한 지연시간을 방지하고 네트워크 용량을 개선해서 페이지 로드 시간을 단축한다.
+- 이 외에도 Head Of Line Blocking 문제 또한 해결되어 병렬 처리를 위해 여러 TCP 연결이 필요하지 않게 되었다. 그 결과 어플리케이션을 더욱 빠르고 간단하고, 비용은 적게 만들 수 있게 됐다.
 
 ### 기반 프로토콜
 - TCP: HTTP/1.1, HTTP/2
@@ -1815,3 +1870,5 @@
 
 - [모든 개발자를 위한 HTTP 웹 기본 지식/김영한](https://www.inflearn.com/course/http-%EC%9B%B9-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/dashboard)
 - [REST API란, HTTP Method](https://velog.io/@ellyheetov/REST-API)
+- [DNS 구성 요소 및 분류(DNS Resolver, DNS 서버)](https://anggeum.tistory.com/entry/DNS-%EA%B0%9C%EB%85%90%EC%9E%A1%EA%B8%B0-2-DNS-%EA%B5%AC%EC%84%B1-%EC%9A%94%EC%86%8C-%EB%B0%8F-%EB%B6%84%EB%A5%98DNS-Resolver-DNS-%EC%84%9C%EB%B2%84)
+- [도메인 네임(Domain Name)](https://hyoje420.tistory.com/33)
