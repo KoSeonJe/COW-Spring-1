@@ -436,17 +436,11 @@ CREATE TABLE NewOrders (
 
 | 데이터 타입 | 설명 | ANSI SQL 표준 타입 |
 | --- | --- | --- |
-| INTEGER
-INT | 4바이트 정수형을 저장한다. | INTEGER, INT
-SMALLINT |
-| NUMERIC(m, d)
-DECIMAL(m, d) | 전체 자릿수 m, 소수점이하 자릿수 d를 가진 숫자형을 저장한다. | DECIMAL(p, s)
-NUMERIC[(p, s)] |
-| CHAR(n) | 문자형 고정길이, 문자를 저장하고 남은 공간은 공백 로 채운다. | CHARACTER(n)
-CHAR(n) |
+| INTEGER<br> INT | 4바이트 정수형을 저장한다. | INTEGER, INT <br>SMALLINT |
+| NUMERIC(m, d)<br> DECIMAL(m, d) | 전체 자릿수 m, 소수점이하 자릿수 d를 가진 숫자형을 저장한다. | DECIMAL(p, s) <br>NUMERIC[(p, s)] |
+| CHAR(n) | 문자형 고정길이, 문자를 저장하고 남은 공간은 공백 로 채운다. | CHARACTER(n) <br>CHAR(n) |
 | VARCHAR(n) | 문자형 가변길이를 저장한다. | CHARACTER VARYING(n) |
 | DATE | 날짜형, 연도, 월, 날, 시간을 저장한다. |  |
-
 ### ALTER 문
 
 - 생성된 테이블의 속성과 속성에 관한 제약을 변경
@@ -1056,3 +1050,45 @@ ROLLBACK;
 - 속성의 개수를 알 수 없는 경우 [방법1]을, 속성의 개수가 제한적으로 정해지는 경우 [방법2]를 사용한다.
 
 <img width="582" alt="스크린샷 2023-08-03 오전 12 00 08" src="https://github.com/Hoya324/2023-DBStudy/assets/96857599/6bebfc1a-3b3b-45ca-91ef-c75bf0226674">
+
+
+## 프로그래머스 문제 해결
+
+### 문제1
+```sql
+SELECT FACTORY_ID,FACTORY_NAME,ADDRESS
+FROM FOOD_FACTORY
+WHERE ADDRESS LIKE '강원도%'
+ORDER BY FACTORY_ID;
+```
+
+### 문제2
+```sql
+SELECT NAME
+FROM ANIMAL_INS 
+ORDER BY DATETIME
+LIMIT 1;
+```
+
+### 문제3
+```sql
+SELECT ANIMAL_ID, NAME
+FROM ANIMAL_INS
+WHERE INTAKE_CONDITION = "Sick"
+ORDER BY ANIMAL_ID;
+```
+
+### 문제4
+```sql
+SELECT COUNT(*) count
+FROM (SELECT NAME 
+FROM ANIMAL_INS
+WHERE NAME IS NOT NULL
+GROUP BY NAME) ANIMALS;
+```
+
+### 문제5
+```sql
+SELECT MAX(PRICE) AS MAX_PRICE
+FROM PRODUCT
+```
