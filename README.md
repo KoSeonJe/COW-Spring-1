@@ -17,6 +17,9 @@
     <td  align="center">
       <img  src="https://avatars.githubusercontent.com/u/127813439?v=4"  width="100px;"  alt=""/>
     </td>
+    <td  align="center">
+      <img  src="https://avatars.githubusercontent.com/u/104254012?v=4"  width="100px;"  alt=""/>
+    </td>
   </tr>
   <tr>
     <td align="center">
@@ -37,6 +40,11 @@
     <td align="center">
         <a href="https://github.com/siifu">
             <div>선제</div>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/Gopistol">
+            <div>건</div>
         </a>
     </td>
   </tr>
